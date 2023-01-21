@@ -3,7 +3,7 @@ node('node-1') {
     stage('git') {
       git branch: 'scripted', url: 'https://github.com/Adithya119/java11-examples.git'
 	stage('build') {
-      sh 'mvn clean package'
+      sh '/usr/local/apache-maven-3.8.7/bin/mvn clean package'
 	stage('arhcive') {
       archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
 	stage('publish test results') {
