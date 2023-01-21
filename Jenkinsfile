@@ -7,6 +7,7 @@ all Jenkins DSL */
 
 pipeline {
     agent { label 'node-1' } 
+    triggers { upstream(upstreamProjects: 'starter', threshold: hudson.model.Result.SUCCESS) }
     stages {
         stage('git') {
             steps { 
