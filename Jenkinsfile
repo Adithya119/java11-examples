@@ -12,15 +12,19 @@ pipeline {
                cron('45 23 * * 1-5') 
                pollSCM('H */4 * * 1-5') /* periodical build + pollSCM */  /* don't separate cron & pollSCM (multiple triggers) with comma --> it'll throw error */
              }  
+    parameters { 
+               choice(name: 'BRANCH_TO_BUILD', choices: ['master', 'scripted', 'declarative'], description: 'choose a branch to build')
+               string(name: 'MAVEN_GOAL', defaultValue: 'package', description: 'specify the maven goal(s)')
+             }
     stages {
         stage('git') {
             steps { 
-                git branch: 'declarative', url: 'https://github.com/Adithya119/java11-examples.git'
+                git branch: "${params.BRANCH_TO_BUILD}", url: 'https://github.com/Adithya119/java11-examples.git'
             }
         }
         stage('build') {
             steps {
-                sh '/usr/local/apache-maven-3.8.7/bin/mvn clean package'
+                sh "/usr/local/apache-maven-3.8.7/bin/mvn ${params.MAVEN_GOAL}"
             }
         }
         stage('archive') {
