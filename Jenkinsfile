@@ -17,7 +17,7 @@ node('node-1') {
       currentBuild.result = 'SUCCESS'
     }
 
-    catch(err) {
+    catch (err) {
         currentBuild.result = 'FAILIURE'
     }
 
@@ -28,4 +28,4 @@ node('node-1') {
     }
 }
 
-/* included all the script inside the "try" block --> notes in the book.
+/* included all the script inside the "try" block --> notes in the book. */
