@@ -38,5 +38,14 @@ pipeline {
             }
         }
     }
-
+    
+    post {
+      always {
+          mail {
+              to: 'arkariveda@gmail.com',
+              subject: "Build status of pipeline ${currentBuild.fullDisplayName}"
+              body: "${env.BUILD_URL} has resulted in ${currentBuild.result}" 
+          }
+      }
+  }
 }
