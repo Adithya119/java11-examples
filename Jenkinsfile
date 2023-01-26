@@ -41,11 +41,10 @@ pipeline {
     
     post {
       always {
-          mail {
-              to: 'arkariveda@gmail.com',
-              subject: "Build status of pipeline ${currentBuild.fullDisplayName}"
-              body: "${env.BUILD_URL} has resulted in ${currentBuild.result}" 
-          }
+          mail to: 'arkariveda@gmail.com',
+               from: 'arkariveda@gmail.com', /* From email address. Defaults to the admin address globally configured for the Jenkins instance. */
+               subject: "Build status of pipeline ${currentBuild.fullDisplayName}",
+               body: "${env.BUILD_URL} has resulted in ${currentBuild.result}" 
       }
   }
 }
