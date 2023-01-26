@@ -39,9 +39,9 @@ pipeline {
         }
     }
     
-    post {
+    post {   /* post block was referred from "declarative pipeline documentation" bookmark */
       always {
-          mail to: 'arkariveda@gmail.com',
+          mail to: 'arkariveda@gmail.com',   /* "mail" is referred from "pipeline steps reference" bookmark */
                from: 'arkariveda@gmail.com', /* From email address. Defaults to the admin address globally configured for the Jenkins instance. */
                subject: "Build status of pipeline ${currentBuild.fullDisplayName}",
                body: "${env.BUILD_URL} has resulted in ${currentBuild.result}" 
