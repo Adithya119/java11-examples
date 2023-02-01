@@ -13,8 +13,8 @@ pipeline {
                pollSCM('H */4 * * 1-5') /* periodical build + pollSCM */  /* don't separate cron & pollSCM (multiple triggers) with comma --> it'll throw error */
              }  
     parameters { 
-               choice(name: 'BRANCH_TO_BUILD', choices: ['master', 'scripted', 'declarative'], description: 'choose a branch to build')
-               string(name: 'MAVEN_GOAL', defaultValue: 'package', description: 'specify the maven goal(s)')
+               choice(name: 'BRANCH_TO_BUILD', choices: ['declarative', 'scripted', 'master'], description: 'choose a branch to build')
+               string(name: 'MAVEN_GOAL', defaultValue: 'clean package', description: 'specify the maven goal(s)')
              }
     stages {
         stage('git') {
